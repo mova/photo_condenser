@@ -1,0 +1,11 @@
+# Core dependencies
+opencv-python>=4.5.0
+Pillow>=9.0.0
+numpy>=1.19.0
+
+# Development dependencies
+black>=22.0.0
+mypy>=0.900
+pylint>=2.12.0
+pytest>=7.0.0
+onnxruntime
