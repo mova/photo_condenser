@@ -5,8 +5,8 @@ import os
 import shutil
 from dataclasses import dataclass
 
-from .image_data import ImageData
-from .image_comparator import ImageComparator
+from photo_condenser.image_data import ImageData
+from photo_condenser.image_comparator import ImageComparator
 
 
 @dataclass

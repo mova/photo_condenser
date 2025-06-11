@@ -3,12 +3,12 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from typing import Optional, Callable
 
-from .components.status_bar import StatusBar
-from .components.address_bar import AddressBar
-from .views.loading_view import LoadingView
-from .views.portrait_view import PortraitView
-from .views.landscape_view import LandscapeView
-from ..app_controller import AppController
+from photo_condenser.ui.components.status_bar import StatusBar
+from photo_condenser.ui.components.address_bar import AddressBar
+from photo_condenser.ui.views.loading_view import LoadingView
+from photo_condenser.ui.views.portrait_view import PortraitView
+from photo_condenser.ui.views.landscape_view import LandscapeView
+from photo_condenser.app_controller import AppController
 
 
 class MainWindow(tk.Tk):

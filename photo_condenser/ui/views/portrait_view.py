@@ -2,8 +2,8 @@ import tkinter as tk
 from tkinter import ttk
 from typing import Optional, Callable, Tuple
 
-from .base_view import BaseView
-from ..components.image_viewer import ImageViewer
+from photo_condenser.ui.views.base_view import BaseView
+from photo_condenser.ui.components.image_viewer import ImageViewer
 
 
 class PortraitView(BaseView):
@@ -39,13 +39,13 @@ class PortraitView(BaseView):
         Args:
             select: 0 None, 1 Left/Top, 2 Right/Bottom
         """
-        if select ==0:
+        if select == 0:
             self.viewer1.highlight(False)
             self.viewer2.highlight(False)
-        elif select ==1:
+        elif select == 1:
             self.viewer1.highlight(True)
             self.viewer2.highlight(False)
-        elif select ==2:
+        elif select == 2:
             self.viewer1.highlight(False)
             self.viewer2.highlight(True)
         else:

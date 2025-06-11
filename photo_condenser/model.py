@@ -9,7 +9,7 @@ class ImageSimilarityONNX:
         model = "mobilenetv2-12"
         # model = "mobilenetv2-7"
         self.model_path = (
-            Path.home() / ".cache" / "condensor_models" / f"{model}.onnx"
+            Path.home() / ".cache" / "condenser_models" / f"{model}.onnx"
         )
         self.model_url = f"https://github.com/onnx/models/raw/refs/heads/main/validated/vision/classification/mobilenet/model/{model}.onnx"
 

@@ -3,7 +3,7 @@ from tkinter import ttk
 from typing import Optional, Callable
 import os
 
-from .base_view import BaseView
+from photo_condenser.ui.views.base_view import BaseView
 
 
 class LoadingView(BaseView):
@@ -28,7 +28,11 @@ class LoadingView(BaseView):
 
         # Current file label
         self.file_label = ttk.Label(
-            center_frame, text="", font=("Arial", 10), wraplength=400, justify="center"
+            center_frame,
+            text="",
+            font=("Arial", 10),
+            wraplength=400,
+            justify="center",
         )
         self.file_label.pack(padx=40, pady=(0, 20), expand=True)
 
