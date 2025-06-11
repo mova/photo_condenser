@@ -15,6 +15,15 @@ Features
 - 📊 Image metadata display
 - 🖱️ Intuitive navigation with address bar
 
+Screenshot
+----------
+
+.. image:: screemshot.png
+   :alt: Photo Condenser Screenshot
+   :align: center
+   :width: 80%
+   :target: screemshot.png
+
 Installation
 ------------
 
