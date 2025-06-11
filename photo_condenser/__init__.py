@@ -2,7 +2,7 @@
 Photo Deduplicator - A tool to find and remove duplicate or similar images.
 """
 
-__version__ = "0.1.0"
+__version__ = '0.0.1'
 
 # Import main components
 from photo_condenser.image_comparator import ImageComparator, ImagePair
