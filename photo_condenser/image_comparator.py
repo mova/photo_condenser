@@ -1,12 +1,12 @@
 # image_comparator.py
 from dataclasses import dataclass
 from typing import List, Optional
-import cv2
 import numpy as np
 import os
 from pathlib import Path
 from image_data import ImageData
 from img_cache import ImageDataCache
+
 
 @dataclass
 class ImagePair:
@@ -39,10 +39,11 @@ class ImageComparator:
         self.cache = ImageDataCache(image_dir)
         image_paths = self.find_images()
 
-        self.valid_images = [ImageData.from_file(path, self.cache) for path in image_paths]
-        img_dict = {img.hash:img for img in self.valid_images}
+        self.valid_images = [
+            ImageData.from_file(path, self.cache) for path in image_paths
+        ]
+        img_dict = {img.hash: img for img in self.valid_images}
 
-        
         cached_embeddings = self.cache.get_embeddings(list(img_dict.keys()))
 
         for img_hash, cached in cached_embeddings.items():
@@ -80,7 +81,14 @@ class ImageComparator:
         n = len(self.valid_images)
         for i in range(n):
             for j in range(i + 1, n):
-                similarity = float(np.dot(self.valid_images[i].ml_embedding.T, self.valid_images[j].ml_embedding).squeeze().item())
+                similarity = float(
+                    np.dot(
+                        self.valid_images[i].ml_embedding.T,
+                        self.valid_images[j].ml_embedding,
+                    )
+                    .squeeze()
+                    .item()
+                )
 
                 # Convert from [-1, 1] to [0, 1] range
                 similarity = (similarity + 1) / 2

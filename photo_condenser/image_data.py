@@ -1,6 +1,5 @@
 # image_data.py
 import os
-# import cv2
 import numpy as np
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -9,6 +8,7 @@ import hashlib
 from img_cache import ImageDataCache
 from model import onnx_model
 from PIL import Image
+
 
 class ImageData:
     """Represents an image and its essential properties for deduplication."""
@@ -22,13 +22,12 @@ class ImageData:
         """Initialize computed properties."""
         self.path = os.path.abspath(self.path)
         if self.hash in cache:
-            cache_info =cache[self.hash]
-            for k,v in cache_info.items():
+            cache_info = cache[self.hash]
+            for k, v in cache_info.items():
                 assert hasattr(self, f"_{k}")
                 setattr(self, f"_{k}", v)
         else:
             cache[self.hash] = self.ml_embedding
-
 
     @property
     def hash(self) -> str:
@@ -54,8 +53,7 @@ class ImageData:
     def image(self) -> np.ndarray:
         """Load the image data if not already loaded."""
         if self._image is None:
-            # self._image = cv2.imread(self.path)
-            self._image= Image.open(self.path).convert("RGB")
+            self._image = Image.open(self.path).convert("RGB")
             if self._image is None:
                 raise ValueError(f"Could not load image: {self.path}")
         return self._image

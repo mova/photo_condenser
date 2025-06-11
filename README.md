@@ -1,63 +1,65 @@
-# Photo Deduplicator
+# Photo Condenser
 
-A Python application that helps you find and remove duplicate or similar images from your photo collection. The tool uses computer vision to compare images and presents you with similar pairs, allowing you to keep the best one.
+A modern Python application for finding and managing similar or duplicate images in your photo collection. The tool uses Machine Learning to compare images and provides an intuitive interface for reviewing and organizing your photos.
+
+**Select the photo you want to keep with arrow keys**
 
 ## Features
 
-- Scans a directory for images (supports JPG, PNG, BMP, TIFF, GIF)
-- Uses histogram comparison to find visually similar images
-- Simple GUI interface for reviewing and selecting which images to keep
-- Moves deleted images to a "trash" folder instead of permanent deletion
-- Shows image filenames and sizes for easy comparison
-
-## Requirements
-
-- Python 3.7+
-- OpenCV
-- Pillow
-- NumPy
+- 🖼️ Supports multiple image formats (JPG, PNG, WebP, etc.)
+- 🔍 Advanced image comparison using Machine Learning
+- 🎯 Smart caching for improved performance
+- 📊 Image metadata display
+- 🖱️ Intuitive navigation with address bar
 
 ## Installation
 
-1. Clone this repository or download the files
-2. Install the required packages:
-
+### Using pipx
 ```bash
-pip install -r requirements.txt
+pipx install photo_condenser
 ```
 
 ## Usage
 
-1. Run the application:
-
+### Command Line
 ```bash
-python photo_deduplicator.py
+# Launch the application
+photo_condenser
+
+# Or run directly
+python -m photo_condenser
 ```
 
-2. Click "Select Image Folder" and choose the folder containing your images
-3. The application will scan for similar images
-4. For each pair of similar images:
-   - The left and right arrow keys let you choose which image to keep
-   - The other image will be moved to a "trash" folder
-   - The next similar pair will be shown automatically
+### Basic Workflow
+1. Launch the application
+2. Use the address bar to navigate to your photo directory
+3. The application will present you with pairs of similar images
+4. Use the arrow keys to select the image you want to keep or Space to skip
 
-## How It Works
+All not-selected images are moved to a `trash` folder.
 
-The application uses OpenCV to:
-1. Load and resize images to a common size
-2. Convert images to grayscale
-3. Calculate color histograms
-4. Compare histograms to determine similarity
+## Development
 
-Images with a similarity score above a certain threshold are considered potential duplicates.
+### Setting up the development environment
+```bash
+# Clone the repository
+git clone https://github.com/mova/photo_condenser.git
+cd photo_condenser
 
-## Notes
+# Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-- The application creates a "trash" folder in your selected directory
-- No files are permanently deleted - they're just moved to the trash folder
-- The similarity threshold can be adjusted in the code (look for `if score < 0.2`)
-- Processing time depends on the number and size of images
+# Install development dependencies
+pip install -e .[dev]
+```
+
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit issues and pull requests.
 
 ## License
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
