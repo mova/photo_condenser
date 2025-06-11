@@ -5,9 +5,9 @@ import os
 import shutil
 from dataclasses import dataclass
 
-from image_data import ImageData
-from image_comparator import ImageComparator
-from img_cache import ImageDataCache
+from .image_data import ImageData
+from .image_comparator import ImageComparator
+
 
 @dataclass
 class ImagePair:
@@ -25,15 +25,15 @@ class ImagePair:
             return self.image_data1
         elif key == 1:
             return self.image_data2
-        
+
         raise IndexError
 
     def __iter__(self):
         return iter([self.image_data1, self.image_data2])
-        
 
     def __contains__(self, item):
         return item in [self.image_data1, self.image_data2]
+
 
 class AppController:
     """Handles the core application logic separate from the UI."""
@@ -56,7 +56,7 @@ class AppController:
             os.makedirs(self.image_dir, exist_ok=True)
             self.trash_dir = os.path.join(self.image_dir, "trash")
             os.makedirs(self.trash_dir, exist_ok=True)
-            
+
             self.comparator.set_images(self.image_dir)
 
     def set_status_callback(self, callback: Callable[[str], None]) -> None:
@@ -67,8 +67,6 @@ class AppController:
         """Update status using the callback if available."""
         if self._status_callback:
             self._status_callback(message)
-
-
 
     def find_similar_pairs(self) -> List[ImagePair]:
         """Find similar image pairs using the image comparator."""
@@ -129,7 +127,7 @@ class AppController:
 
         # keep_path = pair.path1 if keep_left else pair.path2
         imd_del = pair[1] if keep_left else pair[0]
-        discard_path=imd_del.path
+        discard_path = imd_del.path
 
         try:
             # Move discarded image to trash
@@ -146,8 +144,9 @@ class AppController:
 
             # Remove the processed pair from the list
             del self.similar_pairs[self.current_pair_index]
-            self.similar_pairs = [ipair for ipair in self.similar_pairs if imd_del not in ipair]
-                
+            self.similar_pairs = [
+                ipair for ipair in self.similar_pairs if imd_del not in ipair
+            ]
 
             # Adjust the current pair index if needed
             if self.current_pair_index >= len(self.similar_pairs):

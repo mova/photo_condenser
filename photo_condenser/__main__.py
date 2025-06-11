@@ -3,7 +3,7 @@
 Photo Deduplicator - A tool to find and remove duplicate or similar images.
 """
 
-from ui.main_window import MainWindow
+from .ui.main_window import MainWindow
 import os
 
 

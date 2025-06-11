@@ -9,27 +9,25 @@ test:
 	pytest
 
 docs:
-	# $(MAKE) -C docs clean
 	$(MAKE) -C docs html
 
 build: clean
-	flit build
+	venv/bin/flit build
 
 release_local: clean test build
-	flit publish
+	venv/bin/flit publish
 
 
 release_remote:
-	bump2version patch
+	venv/bin/bump2version patch
 	git push
 	git push --tags
 
 install:
-	# flit install --editable
-	pip install --no-deps -e .
+	venv/bin/flit install --editable
 
 
 build_venv:
 	python -m venv venv
-	source venv/bin/activate; pip install --upgrade pip flit ruff black mypy pytest pre-commit
-	source venv/bin/activate; pre-commit install
+	venv/bin/pip install .[dev]
+	venv/bin/pre-commit install

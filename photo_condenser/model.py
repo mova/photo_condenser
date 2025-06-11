@@ -1,21 +1,22 @@
-import os
 import urllib.request
 from pathlib import Path
 import onnxruntime as ort
 import numpy as np
-from PIL import Image
+
 
 class ImageSimilarityONNX:
     def __init__(self):
         model = "mobilenetv2-12"
         # model = "mobilenetv2-7"
-        self.model_path = Path.home() / ".cache" / "condensor_models" / f"{model}.onnx"
-        self.model_url = (
-            f"https://github.com/onnx/models/raw/refs/heads/main/validated/vision/classification/mobilenet/model/{model}.onnx"
+        self.model_path = (
+            Path.home() / ".cache" / "condensor_models" / f"{model}.onnx"
         )
+        self.model_url = f"https://github.com/onnx/models/raw/refs/heads/main/validated/vision/classification/mobilenet/model/{model}.onnx"
 
         self._ensure_model()
-        self.session = ort.InferenceSession(str(self.model_path),providers=["CPUExecutionProvider"])
+        self.session = ort.InferenceSession(
+            str(self.model_path), providers=["CPUExecutionProvider"]
+        )
         self.input_name = self.session.get_inputs()[0].name
 
     def _ensure_model(self):
@@ -40,5 +41,6 @@ class ImageSimilarityONNX:
 
     def __call__(self, img) -> np.ndarray:
         return self._embed(img)
+
 
 onnx_model = ImageSimilarityONNX()

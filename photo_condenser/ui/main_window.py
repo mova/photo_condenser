@@ -8,7 +8,7 @@ from .components.address_bar import AddressBar
 from .views.loading_view import LoadingView
 from .views.portrait_view import PortraitView
 from .views.landscape_view import LandscapeView
-from app_controller import AppController
+from ..app_controller import AppController
 
 
 class MainWindow(tk.Tk):
@@ -103,7 +103,9 @@ class MainWindow(tk.Tk):
         )
         self.prev_btn.pack(side=tk.LEFT, padx=2)
 
-        self.next_btn = ttk.Button(toolbar, text="Next (→)", command=self._on_next_pair)
+        self.next_btn = ttk.Button(
+            toolbar, text="Next (→)", command=self._on_next_pair
+        )
         self.next_btn.pack(side=tk.LEFT, padx=2)
 
         # Keep/Delete buttons
@@ -117,7 +119,9 @@ class MainWindow(tk.Tk):
         self.keep_left_btn.pack(side=tk.LEFT, padx=2)
 
         self.keep_right_btn = ttk.Button(
-            toolbar, text="Keep Right (2)", command=lambda: self._on_keep_image(False)
+            toolbar,
+            text="Keep Right (2)",
+            command=lambda: self._on_keep_image(False),
         )
         self.keep_right_btn.pack(side=tk.LEFT, padx=2)
 
@@ -232,7 +236,9 @@ class MainWindow(tk.Tk):
         current_view.highlight_selection(1 if keep_first else 2)
 
         # Schedule the actual deletion after a delay
-        self.cancel_del_id =  self.after(1000, lambda: self._process_deletion(keep_first))
+        self.cancel_del_id = self.after(
+            1000, lambda: self._process_deletion(keep_first)
+        )
 
     def _process_deletion(self, keep_first: bool) -> None:
         """Process the image deletion after selection."""
@@ -242,10 +248,9 @@ class MainWindow(tk.Tk):
             messagebox.showerror("Error", "Failed to process images")
         self.current_view.highlight_selection(0)
 
-
     def _cancel_selection(self) -> None:
         """Cancel the current selection."""
-        
+
         if self.cancel_del_id is not None:
             self.after_cancel(self.cancel_del_id)
         if isinstance(self.current_view, (PortraitView, LandscapeView)):

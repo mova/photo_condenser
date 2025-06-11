@@ -4,8 +4,8 @@ from typing import List, Optional
 import numpy as np
 import os
 from pathlib import Path
-from image_data import ImageData
-from img_cache import ImageDataCache
+from .image_data import ImageData
+from .img_cache import ImageDataCache
 
 
 @dataclass

@@ -29,6 +29,7 @@ dev = [
   "ruff",
   "mock",
   "pylint>=2.12.0",
+  "flit",
 ]
 doc = ["sphinx", "sphinx_rtd_theme", "autodocsumm", "readthedocs-sphinx-search"]
 

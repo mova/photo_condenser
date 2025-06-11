@@ -5,8 +5,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional, Tuple
 import hashlib
-from img_cache import ImageDataCache
-from model import onnx_model
+from .img_cache import ImageDataCache
+from .model import onnx_model
 from PIL import Image
 
 
